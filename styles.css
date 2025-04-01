@@ -4,7 +4,69 @@ body {
     flex-direction: row;
     justify-content: center;
 }
- 
+
+button {
+    padding: 0px;
+    height: 100px;
+    width: 100px;
+    font-size: 2em;
+    border-radius: 8px;
+}
+
+.calculator-wrapper {
+    background-color: antiquewhite;
+    border-radius: 15px;
+}
+
+.calculator-text {
+    margin: 0px;
+    margin-right: 8px;
+    align-self: center;
+}
+
+.display {
+    display: flex;
+    justify-content: right;
+    flex: 1 0 auto;
+    font-size: 2em;
+    height: 50px;
+    border-radius: 8px;
+    background-color: #d1cdcd;
+    margin: 30px 15px 20px 15px;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+}
+
 .content {
+    display: flex;
+    width: 446px;
+    height: 650px;
     margin-top: 50px;
+}
+
+.buttons {
+    display: flex;
+    padding: 0;
+}
+
+.left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-left: 15px;
+    flex-direction: row;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    gap: 5px;
+}
+
+.plus {
+    flex: 1 0 auto;
 }
