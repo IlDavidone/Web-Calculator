@@ -1,13 +1,14 @@
 const text = document.querySelector(".calculator-text");
 
-let totalNumbers = [], intNumber;
+let totalNumbers = [], intNumber, tempNumber, operation;
 
 //function located in every number button, adds a number to this array in relation to which button was clicked, then converts it into an integer
 function addNumbersToTotal(num) {
-  if(totalNumbers.length < 10) {
+  if(totalNumbers.length < 15) {
   totalNumbers.push(num);
   }
   intNumber = parseInt(totalNumbers.join(""));
+  text.textContent = intNumber;
 }
 
 //Add an event listener for every button and add the corresponding number to an array (max 10)
@@ -59,4 +60,45 @@ num9.addEventListener("click", () => {
 const num0 = document.querySelector(".number-zero");
 num0.addEventListener("click", () => {
   addNumbersToTotal(0);
+});
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => {
+    totalNumbers = [];
+    intNumber = undefined;
+    text.textContent = "0";
+});
+
+const cancelButton = document.querySelector(".cancel");
+cancelButton.addEventListener("click", () => {
+    totalNumbers.pop();
+    intNumber = parseInt(totalNumbers.join(""));
+    text.textContent = intNumber;
+    if(isNaN(intNumber) == true){
+        text.textContent = "0";
+    }
+});
+
+const divisionButton = document.querySelector(".division");
+divisionButton.addEventListener("click", () => {
+    tempNumber = intNumber, operation = "division";
+    intNumber = 0, totalNumbers = [];
+});
+
+const multiplicationButton = document.querySelector(".multiplication");
+multiplicationButton.addEventListener("click", () => {
+    tempNumber = intNumber, operation = "multiplication";
+    intNumber = 0, totalNumbers = [];
+});
+
+const minusButton = document.querySelector(".minus");
+minusButton.addEventListener("click", () => {
+    tempNumber = intNumber, operation = "minus";
+    intNumber = 0, totalNumbers = [];
+});
+
+const plusButton = document.querySelector(".plus");
+plusButton.addEventListener("click", () => {
+    tempNumber = intNumber, operation = "plus";
+    intNumber = 0, totalNumbers = [];
 });
