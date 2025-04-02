@@ -52,6 +52,16 @@ function returnResult() {
         }
             tempNumber = 0;
     }
+    else if(operation == "modulus") {
+        if(tempNumber != 0){
+            concatenatingNumber = intNumber;
+            intNumber = tempNumber % intNumber;
+        }
+            if(tempNumber == 0){
+            intNumber = concatenatingNumber % intNumber;
+        }
+            tempNumber = 0;
+    }
 }
 
 //Add an event listener for every button and add the corresponding number to an array (max 10)
@@ -124,8 +134,12 @@ cancelButton.addEventListener("click", () => {
 
 const modulusButton = document.querySelector(".modulus");
 modulusButton.addEventListener("click", () => {
-
-})
+    if(tempNumber == 0){
+        tempNumber = intNumber;
+    }
+    tempNumber = intNumber, operation = "modulus";
+    intNumber = 0, totalNumbers = [];
+});
 
 const divisionButton = document.querySelector(".division");
 divisionButton.addEventListener("click", () => {
@@ -167,4 +181,5 @@ const equalButton = document.querySelector(".equal");
 equalButton.addEventListener("click", () => {
     returnResult();
     text.textContent = intNumber;
+    totalNumbers = [];
 });
