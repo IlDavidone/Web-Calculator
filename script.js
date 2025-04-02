@@ -1,10 +1,10 @@
 const text = document.querySelector(".calculator-text");
 
-let totalNumbers = [], intNumber, tempNumber = 0, operation, concatenatingNumber;
+let totalNumbers = [], intNumber, tempNumber = 0, operation, concatenatingNumber, strNumber;
 
 //function located in every number button, adds a number to this array in relation to which button was clicked, then converts it into an integer
 function addNumbersToTotal(num) {
-  if(totalNumbers.length < 15) {
+  if(totalNumbers.length < 11) {
   totalNumbers.push(num);
   }
   intNumber = parseInt(totalNumbers.join(""));
@@ -180,6 +180,12 @@ plusButton.addEventListener("click", () => {
 const equalButton = document.querySelector(".equal");
 equalButton.addEventListener("click", () => {
     returnResult();
+    if(intNumber.toString().length >= 11) {
+        text.textContent = "ERROR!";
+        intNumber = 0;
+    }
+    else if(intNumber.toString().length < 11){
     text.textContent = intNumber;
     totalNumbers = [];
+    }
 });
