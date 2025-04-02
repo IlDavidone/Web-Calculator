@@ -1,6 +1,6 @@
 const text = document.querySelector(".calculator-text");
 
-let totalNumbers = [], intNumber, tempNumber, operation;
+let totalNumbers = [], intNumber, tempNumber = 0, operation, concatenatingNumber;
 
 //function located in every number button, adds a number to this array in relation to which button was clicked, then converts it into an integer
 function addNumbersToTotal(num) {
@@ -9,6 +9,49 @@ function addNumbersToTotal(num) {
   }
   intNumber = parseInt(totalNumbers.join(""));
   text.textContent = intNumber;
+}
+
+function returnResult() {
+    if(operation == "plus") {
+        if(tempNumber != 0){
+        concatenatingNumber = intNumber;
+        intNumber = tempNumber + intNumber;
+    }
+        if(tempNumber == 0){
+        intNumber = concatenatingNumber + intNumber;
+    }
+        tempNumber = 0;
+    }
+    else if(operation == "minus") {
+        if(tempNumber != 0){
+            concatenatingNumber = intNumber;
+            intNumber = tempNumber - intNumber;
+        }
+            if(tempNumber == 0){
+            intNumber = intNumber - concatenatingNumber;
+        }
+            tempNumber = 0;
+    }
+    else if(operation == "multiplication") {
+        if(tempNumber != 0){
+            concatenatingNumber = intNumber;
+            intNumber = tempNumber * intNumber;
+        }
+            if(tempNumber == 0){
+            intNumber = concatenatingNumber * intNumber;
+        }
+            tempNumber = 0;
+    }
+    else if(operation == "division") {
+        if(tempNumber != 0){
+            concatenatingNumber = intNumber;
+            intNumber = tempNumber / intNumber;
+        }
+            if(tempNumber == 0){
+            intNumber = concatenatingNumber / intNumber;
+        }
+            tempNumber = 0;
+    }
 }
 
 //Add an event listener for every button and add the corresponding number to an array (max 10)
@@ -65,7 +108,7 @@ num0.addEventListener("click", () => {
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
     totalNumbers = [];
-    intNumber = undefined;
+    intNumber = undefined, tempNumber = 0;
     text.textContent = "0";
 });
 
@@ -79,26 +122,49 @@ cancelButton.addEventListener("click", () => {
     }
 });
 
+const modulusButton = document.querySelector(".modulus");
+modulusButton.addEventListener("click", () => {
+
+})
+
 const divisionButton = document.querySelector(".division");
 divisionButton.addEventListener("click", () => {
+    if(tempNumber == 0){
+        tempNumber = intNumber;
+    }
     tempNumber = intNumber, operation = "division";
     intNumber = 0, totalNumbers = [];
 });
 
 const multiplicationButton = document.querySelector(".multiplication");
 multiplicationButton.addEventListener("click", () => {
+    if(tempNumber == 0){
+        tempNumber = intNumber;
+    }
     tempNumber = intNumber, operation = "multiplication";
     intNumber = 0, totalNumbers = [];
 });
 
 const minusButton = document.querySelector(".minus");
 minusButton.addEventListener("click", () => {
+    if(tempNumber == 0){
+        tempNumber = intNumber;
+    }
     tempNumber = intNumber, operation = "minus";
     intNumber = 0, totalNumbers = [];
 });
 
 const plusButton = document.querySelector(".plus");
 plusButton.addEventListener("click", () => {
-    tempNumber = intNumber, operation = "plus";
+    if(tempNumber == 0){
+        tempNumber = intNumber;
+    }
+    operation = "plus";
     intNumber = 0, totalNumbers = [];
+});
+
+const equalButton = document.querySelector(".equal");
+equalButton.addEventListener("click", () => {
+    returnResult();
+    text.textContent = intNumber;
 });

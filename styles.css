@@ -70,3 +70,8 @@ button {
 .plus {
     flex: 1 0 auto;
 }
+
+.equal {
+    flex: 1 0 auto;
+    margin-right: 5px;
+}
